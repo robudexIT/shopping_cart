@@ -22,7 +22,7 @@
 	<!--Company Header Starting  -->
 	<div class="container-fluid text-center"
 		style="margin-top: 45px; background-color: #551eb3; color: white; padding: 5px;">
-		<h2>Robudex Electronics</h2>
+		<h2>Robudex Devops Electronics</h2>
 		<h6>We specialize in Electronics</h6>
 		<form class="form-inline" action="index.jsp" method="get">
 			<div class="input-group">
