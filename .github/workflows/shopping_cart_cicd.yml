@@ -62,9 +62,8 @@ jobs:
         with: 
           context: ./
           push: true 
-          tags: 
-           - ${{ secrets.DOCKERHUB_USERNAME }}/${{ DOCKER_REPO }}:latest 
-           - ${{ secrets.DOCKERHUB_USERNAME }}/${{ DOCKER_REPO }}:${{GITHUB_RUN_NUMBER}}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ DOCKER_REPO }}:latest 
+           # - ${{ secrets.DOCKERHUB_USERNAME }}/${{ DOCKER_REPO }}:${{GITHUB_RUN_NUMBER}}
        
     
   
