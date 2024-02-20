@@ -92,7 +92,7 @@ jobs:
           password: ${{ secrets.TEST_HOST_PASSWORD }}
           commands: | 
             docker stop ${{env.APP}} 
-            docker run --name ${{env.APP}} -d --rm -p ${{env.APP_PORT}}:8080 ${{env.DOCKER_USER }}/${{DOCKER_REPO}}:test  
+            docker run --name ${{env.APP}} -d --rm -p ${{env.APP_PORT}}:8080 ${{env.DOCKER_USER }}/${{env.DOCKER_REPO}}:test  
           
            
            
