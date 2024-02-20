@@ -70,29 +70,29 @@ jobs:
         with: 
           context: ./
           push: true 
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/$DOCKER_REPO:test 
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{env.DOCKER_REPO}}:test 
            # - ${{ secrets.DOCKERHUB_USERNAME }}/${{ DOCKER_REPO }}:${{GITHUB_RUN_NUMBER}}
   
-  DeployToTestEnv:
-    runs-on: ubuntu-latest 
-    needs: BuildAndPushForTesting 
-    env: 
-      DOCKER_USER: ${{ secrets.DOCKERHUB_USERNAME }}
-      DOCKER_REPO: shopping-cart
-      APP: shopping-cart-app 
-      APP_PORT: 8081 
+  # DeployToTestEnv:
+  #   runs-on: ubuntu-latest 
+  #   needs: BuildAndPushForTesting 
+  #   env: 
+  #     DOCKER_USER: ${{ secrets.DOCKERHUB_USERNAME }}
+  #     DOCKER_REPO: shopping-cart
+  #     APP: shopping-cart-app 
+  #     APP_PORT: 8081 
       
-    steps:
-      - name: Run SSH Commands 
-        id: ssh 
-        uses: arthurvanl/action-exec-ssh@v1 
-        with: 
-          host: ${{ secrets.TEST_HOST_IP }}
-          username: ${{ secrets.TEST_HOST_USER }}
-          password: ${{ secrets.TEST_HOST_PASSWORD }}
-          commands: | 
-            docker stop "$APP" 
-            docker run --name "$APP" -d --rm -p "$APP_PORT":8080 "$DOCKER_USER"/"$DOCKER_REPO":test  
+  #   steps:
+  #     - name: Run SSH Commands 
+  #       id: ssh 
+  #       uses: arthurvanl/action-exec-ssh@v1 
+  #       with: 
+  #         host: ${{ secrets.TEST_HOST_IP }}
+  #         username: ${{ secrets.TEST_HOST_USER }}
+  #         password: ${{ secrets.TEST_HOST_PASSWORD }}
+  #         commands: | 
+  #           docker stop "$APP" 
+  #           docker run --name "$APP" -d --rm -p "$APP_PORT":8080 "$DOCKER_USER"/"$DOCKER_REPO":test  
           
            
            
