@@ -3,10 +3,19 @@ name: Shopping Cart Action
 on: workflow_dispatch #manual trigger 
 jobs: 
   TestingCode: 
-    runs-on: ubuntu-latest 
+    runs-on: ubuntu-latest  #this runner has install maven by default
     steps: 
+      
       - name: Code Checkout 
         uses: actions/checkout@v4 
-      - name: Echo Github Action
-        run: echo "Hello Github Actions"
+    
+      - name: Maven Test 
+        run: mvn test 
+
+      - name: Maven Checkstyle
+        run: mvn checkstyle:checkstyle 
+
+
+
+        
     
