@@ -21,8 +21,8 @@
 <body style="background-color: #E6F9E6;">
 	<!--Company Header Starting  -->
 	<div class="container-fluid text-center"
-		style="margin-top: 45px; background-color: #33cc33; color: white; padding: 5px;">
-		<h2>Ellison Electronics</h2>
+		style="margin-top: 45px; background-color: #551eb3; color: white; padding: 5px;">
+		<h2>Robudex Electronics</h2>
 		<h6>We specialize in Electronics</h6>
 		<form class="form-inline" action="index.jsp" method="get">
 			<div class="input-group">
@@ -72,6 +72,8 @@
 							<li><a href="index.jsp?type=camera">Camera</a></li>
 							<li><a href="index.jsp?type=speaker">Speakers</a></li>
 							<li><a href="index.jsp?type=tablet">Tablets</a></li>
+                                                        <li><a href="index.jsp?type=server">Servers</a></li>
+                                                        <li><a href="index.jsp?type=network_device">Network Devices</a></li>
 						</ul></li>
 				</ul>
 			</div>
