@@ -5,10 +5,10 @@ jobs:
   Test:
     runs-on: ubuntu-latest 
     env: 
-      Name: Rogmer
+      repo: shopping-cart
     steps: 
       - name: echo env 
-        run: echo $Name
+        run: echo  ${{ secrets.DOCKERHUB_USERNAME }}/"$repo":latest 
         
   # TestingCode: 
   #   runs-on: ubuntu-latest  #this runner has install maven by default
