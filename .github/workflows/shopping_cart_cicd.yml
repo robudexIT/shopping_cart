@@ -70,7 +70,7 @@ jobs:
         with: 
           context: ./
           push: true 
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{env.DOCKER_REPO}}:test 
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{env.DOCKER_REPO}}:${GITHUB_RUN_NUMBER}
            # - ${{ secrets.DOCKERHUB_USERNAME }}/${{ DOCKER_REPO }}:${{GITHUB_RUN_NUMBER}}
   
   DeployToTestEnv:
@@ -91,7 +91,7 @@ jobs:
           command: |
             docker stop ${{env.APP}} 
             sleep 5
-            docker run --name ${{env.APP}} -d --rm -p ${{env.APP_PORT}}:8080 ${{env.DOCKER_USER }}/${{env.DOCKER_REPO}}:test 
+            docker run --name ${{env.APP}} -d --rm -p ${{env.APP_PORT}}:8080 ${{env.DOCKER_USER }}/${{env.DOCKER_REPO}}:${GITHUB_RUN_NUMBER} 
             
       # - name: Run SSH Commands 
       #   id: ssh 
