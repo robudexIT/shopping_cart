@@ -23,7 +23,7 @@
 	<div class="container-fluid text-center"
 		style="margin-top: 45px; background-color: #540703; color: white; padding: 5px;">
 		<h2>Robudex Devops Electronics</h2>
-		<h6>We specialize in Electronics</h6>
+		<h6>We specialize in Electronics and Devops</h6>
 		<form class="form-inline" action="index.jsp" method="get">
 			<div class="input-group">
 				<input type="text" class="form-control" size="50" name="search"
