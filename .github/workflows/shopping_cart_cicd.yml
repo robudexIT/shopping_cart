@@ -58,9 +58,9 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and Push docker image to Dockerhub 
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v5
         with: 
-          context./
+          context: ./
           push: true 
           tags: 
            - ${{ secrets.DOCKERHUB_USERNAME }}/${{ DOCKER_REPO }}:latest 
