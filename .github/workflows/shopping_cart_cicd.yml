@@ -1,35 +1,26 @@
 name: Shopping Cart Action 
 
 on: workflow_dispatch #manual trigger 
-# permissions:
-#   issues: write
+permissions:
+  issues: write
 jobs: 
   Test:
     runs-on: ubuntu-latest
     env: 
       repo: shopping-cart 
     steps: 
-    #   - name: ManualApproval
-    #     uses: trstringer/manual-approval@v1
-    #     with:
-    #       secret: ${{ github.TOKEN }}
-    #       approvers: rogmer.bulaclac@gmail.com
-    #       minimum-approvals: 1
-    #       issue-title: "Deploy to Prod"
-    #       issue-body: "Please approve or deny the deployment to Prod"
-    #       exclude-workflow-initiator-as-approver: false
-    #       additional-approved-words: ''
-    #       additional-denied-words: ''
       - name: ManualApproval
-        uses: macnev2013/manual-approval@latest
+        uses: trstringer/manual-approval@v1
         with:
           secret: ${{ github.TOKEN }}
-          approvers: rogmer.bulaclac@gmail.com
+          approvers: testuser
           minimum-approvals: 1
-          approval-wait: 600
-          issue-title: 'Manual Approval'
-          issue-body: |
-            "Issue Body"
+          issue-title: "Deploy to Prod"
+          issue-body: "Please approve or deny the deployment to Prod"
+          exclude-workflow-initiator-as-approver: false
+          additional-approved-words: ''
+          additional-denied-words: ''
+   
       - name: echo env 
         run: echo  ${{ secrets.DOCKERHUB_USERNAME }}/"$repo":latest 
         
