@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     env: 
       repo: shopping-cart 
-     steps: 
+    steps: 
     #   - name: ManualApproval
     #     uses: trstringer/manual-approval@v1
     #     with:
@@ -29,7 +29,7 @@ jobs:
           approval-wait: 600
           issue-title: 'Manual Approval'
           issue-body: |
-        "Issue Body"
+            "Issue Body"
       - name: echo env 
         run: echo  ${{ secrets.DOCKERHUB_USERNAME }}/"$repo":latest 
         
