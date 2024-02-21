@@ -5,6 +5,7 @@ permissions:
   issues: write
 jobs: 
   Test:
+    runs-on: ubuntu-latest
     env: 
       repo: shopping-cart 
     steps: 
