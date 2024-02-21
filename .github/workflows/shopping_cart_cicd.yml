@@ -4,7 +4,7 @@ on: workflow_dispatch #manual trigger
 jobs: 
   Test:
     permissions:
-      issues: read/write
+      issues: read,write
 
     runs-on: ubuntu-latest 
     env: 
