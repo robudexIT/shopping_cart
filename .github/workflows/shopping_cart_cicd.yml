@@ -1,12 +1,10 @@
 name: Shopping Cart Action 
 
 on: workflow_dispatch #manual trigger 
+permissions:
+  issues: write
 jobs: 
   Test:
-    permissions:
-      issues: write
-
-    runs-on: ubuntu-latest 
     env: 
       repo: shopping-cart 
     steps: 
