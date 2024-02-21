@@ -90,20 +90,12 @@ jobs:
           privateKey: ${{ secrets.TEST_HOST_PRIVATE_KEY }}
           command: |
             docker stop ${{env.APP}} 
-            sleep 5
-            docker run --name ${{env.APP}} -d --rm -p ${{env.APP_PORT}}:8080 ${{env.DOCKER_USER }}/${{env.DOCKER_REPO}}:${GITHUB_RUN_NUMBER} 
+            sleep 2
+            docker pull ${{env.DOCKER_USER }}/${{env.DOCKER_REPO}}:test
+            sleep 2
+            docker run --name ${{env.APP}} -d --rm -p ${{env.APP_PORT}}:8080 ${{env.DOCKER_USER }}/${{env.DOCKER_REPO}}:test
             
-      # - name: Run SSH Commands 
-      #   id: ssh 
-      #   uses: arthurvanl/action-exec-ssh@v1 
-      #   with: 
-      #     host: ${{ secrets.TEST_HOST_IP }}
-      #     username: ${{ secrets.TEST_HOST_USER }}
-      #     password: ${{ secrets.TEST_HOST_PASSWORD }}
-      #     commands: | 
-      #       docker stop ${{env.APP}} 
-      #       docker run --name ${{env.APP}} -d --rm -p ${{env.APP_PORT}}:8080 ${{env.DOCKER_USER }}/${{env.DOCKER_REPO}}:test  
-          
+
            
            
            
