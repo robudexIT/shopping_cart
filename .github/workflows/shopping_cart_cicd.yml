@@ -13,7 +13,7 @@ jobs:
         uses: trstringer/manual-approval@v1
         with:
           secret: ${{ github.TOKEN }}
-          approvers: rogmer2022.bulaclac@gmail.com
+          approvers: rogmer.bulaclac@gmail.com
           minimum-approvals: 1
           issue-title: "Deploy to Prod"
           issue-body: "Please approve or deny the deployment to Prod"
