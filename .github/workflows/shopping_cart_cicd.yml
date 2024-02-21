@@ -10,7 +10,7 @@ jobs:
       - name: ManualApproval
         uses: trstringer/manual-approval@v1
         with:
-          secret: ${{ github.TOKEN }}
+          secret: ${{ secrets.MANUAL_APPROVAL_TOKEN }}
           approvers: rogmer2022.bulaclac@gmail.com
           minimum-approvals: 1
           issue-title: "Deploy to Prod"
