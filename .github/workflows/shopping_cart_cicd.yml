@@ -10,8 +10,8 @@ jobs:
       - name: ManualApproval
         uses: trstringer/manual-approval@v1
         with:
-          secret: ${{ secrets.MANUAL_APPROVAL_TOKEN }}
-          # approvers: rogmer2022.bulaclac@gmail.com
+          secret: ${{ github.TOKEN }}
+          approvers: rogmer2022.bulaclac@gmail.com
           minimum-approvals: 1
           issue-title: "Deploy to Prod"
           issue-body: "Please approve or deny the deployment to Prod"
