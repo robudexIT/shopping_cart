@@ -6,21 +6,10 @@ permissions:
 jobs: 
   Test:
     runs-on: ubuntu-latest
+    environment: production
     env: 
       repo: shopping-cart 
     steps: 
-      - name: ManualApproval
-        uses: trstringer/manual-approval@v1
-        with:
-          secret: ${{ github.TOKEN }}
-          approvers: testuser
-          minimum-approvals: 1
-          issue-title: "Deploy to Prod"
-          issue-body: "Please approve or deny the deployment to Prod"
-          exclude-workflow-initiator-as-approver: false
-          additional-approved-words: ''
-          additional-denied-words: ''
-   
       - name: echo env 
         run: echo  ${{ secrets.DOCKERHUB_USERNAME }}/"$repo":latest 
         
