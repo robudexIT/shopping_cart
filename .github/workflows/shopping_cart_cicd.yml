@@ -55,7 +55,7 @@ jobs:
   
   BuildAndPushForTesting:
     runs-on: ubuntu-latest 
-    needs: TestingCode
+    # needs: TestingCode
     env: 
       DOCKER_REPO: shopping-cart 
     steps: 
