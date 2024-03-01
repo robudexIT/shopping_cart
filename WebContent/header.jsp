@@ -21,8 +21,8 @@
 <body style="background-color: #E6F9E6;">
 	<!--Company Header Starting  -->
 	<div class="container-fluid text-center"
-		style="margin-top: 45px; background-color: #a80d2f; color: white; padding: 5px;">
-		<h2>Robudex Software And Electronics</h2>
+		style="margin-top: 45px; background-color: #035259; color: white; padding: 5px;">
+		<h2>Robudex Software/Hardware And Electronics</h2>
 		<h6>We specialize in  Software and Electronics</h6>
 		<form class="form-inline" action="index.jsp" method="get">
 			<div class="input-group">
@@ -73,6 +73,7 @@
 							<li><a href="index.jsp?type=speaker">Speakers</a></li>
 							<li><a href="index.jsp?type=tablet">Tablets</a></li>
                                                         <li><a href="index.jsp?type=server">Servers</a></li>
+                                                        <li><a href="index.jsp?type=software">Sofware</a></li>
 						</ul></li>
 				</ul>
 			</div>
