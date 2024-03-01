@@ -65,8 +65,12 @@ jobs:
       - name: Update application.properties file
         env:
            DB_TEST_IP: ${{ secrets.DB_TEST_IP }}
+           DB_TEST_USERNAME: ${{ secrets.DB_TEST_USERNAME }}
+           DB_TEST_PWD: ${{ secrets.DB_TEST_PWD }}
         run: |
           sed "s|db.connectionString =.*|db.connectionString = jdbc:mysql://$DB_TEST_IP:3306/shopping-cart|"  src/application.properties
+          sed -i "s|db.username =.*|db.username = $DB_TEST_USERNAME|" src/application.properties
+          sed -i "s|db.password =.*|db.password = $DB_TEST_PWD|" src/application.properties
           cat src/application.properties
 
 
