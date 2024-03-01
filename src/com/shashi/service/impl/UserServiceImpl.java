@@ -9,7 +9,7 @@ import com.shashi.beans.UserBean;
 import com.shashi.constants.IUserConstants;
 import com.shashi.service.UserService;
 import com.shashi.utility.DBUtil;
-//import com.shashi.utility.MailMessage;
+import com.shashi.utility.MailMessage;
 
 public class UserServiceImpl implements UserService {
 
@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
 
 			if (k > 0) {
 				status = "User Registered Successfully!";
-			//	MailMessage.registrationSuccess(user.getEmail(), user.getName().split(" ")[0]);
+				MailMessage.registrationSuccess(user.getEmail(), user.getName().split(" ")[0]);
 			}
 
 		} catch (SQLException e) {

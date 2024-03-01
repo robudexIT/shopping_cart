@@ -18,6 +18,7 @@ spec:
       containers:
       - image: robudex17/shopping-cart:prod
         name: java-app
+        imagePullPolicy: Always   
         ports:
         - containerPort: 8080
           name: java-app

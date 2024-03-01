@@ -13,7 +13,7 @@ import com.shashi.beans.OrderDetails;
 import com.shashi.beans.TransactionBean;
 import com.shashi.service.OrderService;
 import com.shashi.utility.DBUtil;
-//import com.shashi.utility.MailMessage;
+import com.shashi.utility.MailMessage;
 
 public class OrderServiceImpl implements OrderService {
 
@@ -62,8 +62,8 @@ public class OrderServiceImpl implements OrderService {
 			ordered = new OrderServiceImpl().addTransaction(transaction);
 			if (ordered) {
 
-				//MailMessage.transactionSuccess(userName, new UserServiceImpl().getFName(userName),
-				//		transaction.getTransactionId(), transaction.getTransAmount());
+				MailMessage.transactionSuccess(userName, new UserServiceImpl().getFName(userName),
+						transaction.getTransactionId(), transaction.getTransAmount());
 
 				status = "Order Placed Successfully!";
 			}
