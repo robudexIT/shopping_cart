@@ -156,9 +156,8 @@ jobs:
         with:
           base64-kube-config: ${{ secrets.KUBE_CONFIG }} 
       - name: Depoloy To Kubernetes 
-        run: kubectl apply -f kubernetes/application/shopping-cart-app-deployment.yaml -n app-namespace
-           
-           
+        # run: kubectl apply -f kubernetes/application/shopping-cart-app-deployment.yaml -n app-namespace
+        run: kubectl rollout restart deployment shopping-cart-java-app -n app-namespace
             
 
            
