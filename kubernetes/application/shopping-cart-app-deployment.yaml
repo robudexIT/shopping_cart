@@ -5,10 +5,16 @@ metadata:
   labels:
     app: java-app 
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: shopping-cart
       tier: java-app
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1    
   template:
     metadata:
       labels:
