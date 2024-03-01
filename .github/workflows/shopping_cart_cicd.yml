@@ -112,7 +112,7 @@ jobs:
 
   BuildAndPushForProduction:
     runs-on: ubuntu-latest 
-    needs: DeployToTestEnv
+    # needs: DeployToTestEnv
     environment: production
     env: 
       DOCKER_REPO: shopping-cart 
