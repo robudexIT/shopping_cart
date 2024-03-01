@@ -64,10 +64,8 @@ jobs:
 
       - name: Update application.properties file
         run: |
-          sed -i "s|db.connectionString =.*|db.connectionString = jdbc:mysql:\/\/\${{ secrets.DB_TEST_IP }}:3306/shopping-cart|" src/application.properties
-          sed -i "s|db.username =.*|db.username \=${{ secrets.DB_TEST_USERNAME }}|" src/application.properties
-          sed -i "s|db.password =.*|db.password \=${{ secrets.DB_TEST_PWD }}|" src/application.properties
-          cat src/application.properties
+         sed -i "s|db.connectionString =.*|db.connectionString = jdbc:mysql://\$\{{ secrets.DB_TEST_IP }}:3306/shopping-cart|" src/application.properties
+         cat src/application.properties
 
 
       # - name: Login to Docker Hub 
