@@ -63,9 +63,11 @@ jobs:
         uses: actions/checkout@v4 
 
       - name: Update application.properties file
+        env:
+           DB_TEST_IP: ${{ secrets.DB_TEST_IP }}
         run: |
-         sed -i "s|db.connectionString =.*|db.connectionString = jdbc:mysql://\$\{{ secrets.DB_TEST_IP }}:3306/shopping-cart|" src/application.properties
-         cat src/application.properties
+          sed "s|db.connectionString =.*|db.connectionString = jdbc:mysql://$DB_TEST_IP:3306/shopping-cart|"  src/application.properties
+          cat src/application.properties
 
 
       # - name: Login to Docker Hub 
