@@ -71,7 +71,7 @@ jobs:
           sed "s|db.connectionString =.*|db.connectionString = jdbc:mysql://$DB_TEST_IP:3306/shopping-cart|"  src/application.properties
           sed -i "s|db.username =.*|db.username = $DB_TEST_USERNAME|" src/application.properties
           sed -i "s|db.password =.*|db.password = $DB_TEST_PWD|" src/application.properties
-          cat src/application.properties
+          
 
 
       - name: Login to Docker Hub 
@@ -110,49 +110,53 @@ jobs:
             sleep 2
             docker run --name ${{env.APP}} -d --rm -p ${{env.APP_PORT}}:8080 ${{env.DOCKER_USER }}/${{env.DOCKER_REPO}}:test
 
-  # BuildAndPushForProduction:
-  #   runs-on: ubuntu-latest 
-  #   needs: DeployToTestEnv
-  #   environment: production
-  #   env: 
-  #     DOCKER_REPO: shopping-cart 
-  #   steps: 
-  #     - name: Code Checkout 
-  #       uses: actions/checkout@v4 
+  BuildAndPushForProduction:
+    runs-on: ubuntu-latest 
+    needs: DeployToTestEnv
+    environment: production
+    env: 
+      DOCKER_REPO: shopping-cart 
+    steps: 
+      - name: Code Checkout 
+        uses: actions/checkout@v4 
 
-  #     - name: Update application.properties file
-  #       run: |
-  #         sed -i "s|db.connectionString =.*|db.connectionString = jdbc:mysql://\${{ secrets.DB_PROD_IP }}:3306/shopping-cart|" src/application.properties
-  #         sed -i "s|db.username =.*|db.username = \${{ secrets.DB_PROD_USERNAME }}|" src/application.properties
-  #         sed -i "s|db.password =.*|db.password = \${{ secrets.DB_PROD_PWD }}|" src/application.properties
+      - name: Update application.properties file
+        env:
+           DB_PROD_IP: ${{ secrets.DB_PROD_IP }}
+           DB_PROD_USERNAME: ${{ secrets.DB_PROD_USERNAME }}
+           DB_PROD_PWD: ${{ secrets.DB_PROD_PWD }}      
+      
+        run: |
+          sed "s|db.connectionString =.*|db.connectionString = jdbc:mysql://$DB_PROD_IP:3306/shopping-cart|"  src/application.properties
+          sed -i "s|db.username =.*|db.username = $DB_PROD_USERNAME|" src/application.properties
+          sed -i "s|db.password =.*|db.password = $DB_PROD_PWD|" src/application.properties
 
+      - name: Login to Docker Hub 
+        uses: docker/login-action@v3 
+        with: 
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-  #     - name: Login to Docker Hub 
-  #       uses: docker/login-action@v3 
-  #       with: 
-  #         username: ${{ secrets.DOCKERHUB_USERNAME }}
-  #         password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build and Push docker image to Dockerhub 
+        uses: docker/build-push-action@v5
+        with: 
+          context: ./
+          push: true 
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{env.DOCKER_REPO}}:prod
+           # - ${{ secrets.DOCKERHUB_USERNAME }}/${{ DOCKER_REPO }}:${{GITHUB_RUN_NUMBER}}
 
-  #     - name: Build and Push docker image to Dockerhub 
-  #       uses: docker/build-push-action@v5
-  #       with: 
-  #         context: ./
-  #         push: true 
-  #         tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{env.DOCKER_REPO}}:prod
-  #          # - ${{ secrets.DOCKERHUB_USERNAME }}/${{ DOCKER_REPO }}:${{GITHUB_RUN_NUMBER}}
-
-  # DeployToKubernetes:
-  #   runs-on: ubuntu-latest 
-  #   needs: BuildAndPushForProduction
-  #   steps:
-  #     - name: Code Checkout 
-  #       uses: actions/checkout@v4  
-  #     - name: Setup Kubernetes Configuration
-  #       uses: tale/kubectl-action@v1
-  #       with:
-  #         base64-kube-config: ${{ secrets.KUBE_CONFIG }} 
-  #     - name: Depoloy To Kubernetes 
-  #       run: kubectl apply -f kubernetes/application/shopping-cart-app-deployment.yaml -n app-namespace
+  DeployToKubernetes:
+    runs-on: ubuntu-latest 
+    needs: BuildAndPushForProduction
+    steps:
+      - name: Code Checkout 
+        uses: actions/checkout@v4  
+      - name: Setup Kubernetes Configuration
+        uses: tale/kubectl-action@v1
+        with:
+          base64-kube-config: ${{ secrets.KUBE_CONFIG }} 
+      - name: Depoloy To Kubernetes 
+        run: kubectl apply -f kubernetes/application/shopping-cart-app-deployment.yaml -n app-namespace
            
            
             
