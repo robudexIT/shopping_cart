@@ -133,41 +133,19 @@ jobs:
           push: true 
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{env.DOCKER_REPO}}:prod
            # - ${{ secrets.DOCKERHUB_USERNAME }}/${{ DOCKER_REPO }}:${{GITHUB_RUN_NUMBER}}
-           
-#   DeployToKubernetes:
-#     runs-on: ubuntu-latest 
-#     needs: BuildAndPushForProduction
-     
-      
-#     steps:
-#       - name: Execute SSH commmands on remote server
-#         uses: JimCronqvist/action-ssh@master
-#         with:
-#           hosts: ${{ secrets.TEST_HOST_USER }}@${{secrets.TEST_HOST_IP}}
-#           privateKey: ${{ secrets.TEST_HOST_PRIVATE_KEY }}
-#           command: |
-#             docker stop ${{env.APP}} 
-#             sleep 2
-#             docker pull ${{env.DOCKER_USER }}/${{env.DOCKER_REPO}}:test
-#             sleep 2
-#             docker run --name ${{env.APP}} -d --rm -p ${{env.APP_PORT}}:8080 ${{env.DOCKER_USER }}/${{env.DOCKER_REPO}}:test   
 
-# name: Kubectl Action
-
-# on:
-#   workflow_dispatch:
-
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-#     steps:
-#     - uses: tale/kubectl-action@v1
-#       with:
-#         base64-kube-config: ${{ secrets.KUBE_CONFIG }}
-#     - run: kubectl get pods
-            
-           
-             
+  DeployToKubernetes:
+    runs-on: ubuntu-latest 
+    needs: BuildAndPushForProduction
+    steps:
+      - name: Code Checkout 
+        uses: actions/checkout@v4  
+      - name: Setup Kubernetes Configuration
+        uses: tale/kubectl-action@v1
+        with:
+          base64-kube-config: ${{ secrets.KUBE_CONFIG }} 
+      - name: Depoloy To Kubernetes 
+        run: kubectl apply -f kubernetes/application/shopping-cart-app-deployment.yaml -n app-namespace
            
            
             
