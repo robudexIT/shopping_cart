@@ -21,7 +21,7 @@
 <body style="background-color: #E6F9E6;">
 	<!--Company Header Starting  -->
 	<div class="container-fluid text-center"
-		style="margin-top: 45px; background-color: #4c10cc; color: white; padding: 5px;">
+		style="margin-top: 45px; background-color: #a80d2f; color: white; padding: 5px;">
 		<h2>Robudex Software And Electronics</h2>
 		<h6>We specialize in  Software and Electronics</h6>
 		<form class="form-inline" action="index.jsp" method="get">
