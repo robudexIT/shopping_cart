@@ -21,7 +21,7 @@ Note: The payment page is created only for demo purpose and its not fully integr
 - New User Registration
 - Order Successfully Placed
 - The Item was out of stock while exploring but now it got available in the store
-- Successful shipment and delivery of the Item
+- Successful shipment and delivery of the Item..
 
 ### Technologies used:-
 1. Front-End Development:
