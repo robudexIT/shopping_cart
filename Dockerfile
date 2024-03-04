@@ -8,6 +8,7 @@ WORKDIR /app
 COPY . . 
 RUN mvn install 
 
+# Second stage create final Image
 FROM tomcat:9-jre11
 
 RUN rm -rf /usr/local/tomcat/webapps/*
