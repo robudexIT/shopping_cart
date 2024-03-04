@@ -2,7 +2,7 @@
 - Youtube Video for introduction, demo and setup for this Project: https://www.youtube.com/watch?v=RgQG0_orFpM
 <!-- - YouTube video for step by step local setup of similar project: https://www.youtube.com/watch?v=mLFPodZO8Iw&t=8s -->
 <!-- Live site url: https://ellisonelectronics.herokuapp.com -->
-This is an E-Commerce Website build for selling of any electronics products online.
+This is an E-Commerce Website build for selling of any electronics products online...
 
 ### About
 
