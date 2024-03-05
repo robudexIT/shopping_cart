@@ -52,9 +52,16 @@ jobs:
         uses: tale/kubectl-action@v1
         with:
           base64-kube-config: ${{ secrets.KUBE_CONFIG }} 
-      - name: Depoloy To Kubernetes 
-        # run: kubectl apply -f kubernetes/application/shopping-cart-app-deployment.yaml -n app-namespace
-        run: kubectl rollout restart deployment shopping-cart-java-app -n app-namespace
+      - name: Check for existing deployment
+        run: |
+          if kubectl get deployment shopping-cart-java-app -n app-namespace >/dev/null 2>&1; then
+            echo "Deployment exists, rolling out update"
+            kubectl rollout restart deployment shopping-cart-java-app -n app-namespace
+          else
+            echo "Deployment not found, applying new resources"
+            kubectl apply -f kubernetes/application/shopping-cart-app-deployment.yaml -n app-namespace
+          fi
+
             
 
            
