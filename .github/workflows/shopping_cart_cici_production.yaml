@@ -1,4 +1,4 @@
-name: Shopping Cart Action 
+name: Shopping Cart Action Production
 
 #on: workflow_dispatch #manual trigger
 on: 
