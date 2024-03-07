@@ -28,6 +28,25 @@ jobs:
           sed -i "s|db.username =.*|db.username = $DB_PROD_USERNAME|" src/application.properties
           sed -i "s|db.password =.*|db.password = $DB_PROD_PWD|" src/application.properties
 
+
+      - name: SonarQube Scan 
+        run: sonar-scanner 
+            -Dsonar.host.url=${{ secrets.SONAR_URL }}
+            -Dsonar.token=${{ secrets.SONAR_TOKEN }}
+            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
+            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+            -Dsonar.sources=src/ 
+            -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml
+            -Dsonar.java.binaries=target/classes/com/shashi/
+
+      - name: SonarQube Quality Gate Check 
+        id: sonarqube-quality-gate-check 
+        uses: sonarsource/sonarqube-quality-gate-action@master
+        timeout-minutes: 5 
+        env: 
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_URLL }}
+          
       - name: Login to Docker Hub 
         uses: docker/login-action@v3 
         with: 
