@@ -27,7 +27,9 @@ jobs:
           sed -i "s|db.connectionString =.*|db.connectionString = jdbc:mysql://$DB_PROD_IP:3306/shopping-cart|"  src/application.properties
           sed -i "s|db.username =.*|db.username = $DB_PROD_USERNAME|" src/application.properties
           sed -i "s|db.password =.*|db.password = $DB_PROD_PWD|" src/application.properties
-
+     
+      - name: Setup SonarQube 
+        uses: warchant/setup-sonar-scanner@v7 
 
       - name: SonarQube Scan 
         run: sonar-scanner 
