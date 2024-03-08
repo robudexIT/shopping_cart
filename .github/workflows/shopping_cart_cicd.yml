@@ -1,9 +1,9 @@
 name: Shopping Cart Action 
 
-# on: workflow_dispatch #manual trigger
-on: 
- pull_request:
-   branches: main
+on: workflow_dispatch #manual trigger
+# on: 
+#  pull_request:
+#    branches: main
    
 permissions:
   issues: write
