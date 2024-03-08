@@ -27,7 +27,13 @@ jobs:
           sed -i "s|db.connectionString =.*|db.connectionString = jdbc:mysql://$DB_PROD_IP:3306/shopping-cart|"  src/application.properties
           sed -i "s|db.username =.*|db.username = $DB_PROD_USERNAME|" src/application.properties
           sed -i "s|db.password =.*|db.password = $DB_PROD_PWD|" src/application.properties
-
+       
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          
       - name: Build and Push docker image to Dockerhub 
         uses: docker/build-push-action@v5
         with: 
